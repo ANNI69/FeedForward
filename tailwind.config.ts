@@ -74,7 +74,21 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+  function addVariablesForColors({ addBase, theme }: any) {
+    let allColors = theme("colors");
+    let newVars = Object.fromEntries(
+      Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    );
+   
+    addBase({
+      ":root": newVars,
+    });
+  }
+  
+],
 } satisfies Config
+
+
 
 export default config

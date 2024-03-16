@@ -13,7 +13,7 @@ const fontSans = FontSans({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
+  title: "FeedForward",
   description: "Food Waste Management System",
 };
 
@@ -24,6 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <title>FeedForward</title>
+
         <head />
         <body>
           <ThemeProvider

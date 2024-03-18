@@ -6,6 +6,10 @@
   font-family: "Nova";
   src: url("../public/Nexa-Heavy.ttf");
 }
+@font-face {
+  font-family: "Goth";
+  src: url("../public/ZTGatha-SemiBold.ttf");
+}
 
 @layer base {
   :root {

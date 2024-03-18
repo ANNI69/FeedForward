@@ -91,7 +91,7 @@ function MeteorDemo2nd() {
             <p className="font-normal text-base text-slate-500 mb-4 relative z-50">
               Embrace sustainability and enrich the earth. Register your
               composting organization with us and connect with a network
-              committed to turning food waste into resourceful compost. Let's
+              committed to turning food waste into resourceful compost. Lets
               collaborate for a greener tomorrow and a meaningful impact on our
               planet.
             </p>

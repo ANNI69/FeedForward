@@ -49,9 +49,9 @@ function MeteorsDemo1st() {
             to ending hunger and reducing food waste. Together, we can make a
             difference—one meal at a time.
           </p>
-
-          <Button variant="outline">Register</Button>
-
+          <a href="/register/reciever">
+            <Button variant="outline">Register</Button>
+          </a>
           {/* Meaty part - Meteor effect */}
           <Meteors number={20} />
         </div>
@@ -97,7 +97,7 @@ function MeteorDemo2nd() {
             </p>
 
             <Button variant="outline" className="ml-4">
-              Sign Up
+              <a href="/register/reciever">Sign Up</a>
             </Button>
 
             {/* Meaty part - Meteor effect */}

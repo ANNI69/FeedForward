@@ -4,7 +4,6 @@ import { EnvelopeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-black font-[Goth] sticky top-0 z-40">

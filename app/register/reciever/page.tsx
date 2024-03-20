@@ -17,13 +17,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ToastAction } from "@/components/ui/toast";
-
-import { toast, useToast } from "@/components/ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 
-export default function donorRegister() {
-  const { toast } = useToast();
+export default function acceptorRegister() {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -57,8 +54,6 @@ export default function donorRegister() {
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    console.log(formData);
     if (
       formData.name === "" ||
       formData.type === "" ||
@@ -80,7 +75,7 @@ export default function donorRegister() {
         title: "Successfully Registered!",
         description: "Dashboard",
         action: (
-          <a href="/donor/dashboard">
+          <a href="/reciever/dashboard">
             <Button onClick={() => console.log("Redirect to Dash")}>
               Go to Dashboard
             </Button>
@@ -88,6 +83,8 @@ export default function donorRegister() {
         ),
       });
     }
+    e.preventDefault();
+    console.log(formData);
   };
 
   return (
@@ -113,8 +110,6 @@ export default function donorRegister() {
                   value={formData.name}
                 />
               </div>
-
-              {/* Type of Organization - Assuming you will handle the selection change appropriately */}
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="typeOfOrg">Type of Organization</Label>
                 <Select
@@ -128,9 +123,13 @@ export default function donorRegister() {
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent position="popper">
-                    <SelectItem value="caterers">Caterering </SelectItem>
-                    <SelectItem value="compost">Event Manager</SelectItem>
-                    <SelectItem value="biogas">Restaurant</SelectItem>
+                    <SelectItem value="ngo">NGO</SelectItem>
+                    <SelectItem value="compost">
+                      Composting Firm - Post Process
+                    </SelectItem>
+                    <SelectItem value="biogas">
+                      Biogas Plant - Post Process
+                    </SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>

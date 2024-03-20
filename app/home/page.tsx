@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import Navbar from "@/components/navbar";
 import MeteorsDemo from "./3rdSection";
+import {cardsData} from '@/utils/staticdata'
 export default function Homepage() {
   const images = [
     "https://info.ehl.edu/hubfs/Blog-EHL-Insights/Blog-Header-EHL-Insights/zero-food-waste.jpg",
@@ -14,7 +15,7 @@ export default function Homepage() {
   return (
     <>
       <Navbar />
-      <ImagesSlider className="h-[40rem] " images={images}>
+      <ImagesSlider className="h-[90vh]" images={images} >
         <motion.div
           initial={{
             opacity: 0,
@@ -30,17 +31,17 @@ export default function Homepage() {
           className="z-50 flex flex-col justify-center items-center"
         >
           
-          <motion.p className="font-bold text-xl md:text-6xl text-cente bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 font-[Nova]">
+          <motion.p className="font-bold text-xl md:text-8xl text-cente bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 font-[Nova]">
 
             <br /> Turning Leftovers into Opportunities
           </motion.p>
-          <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-            <span>Start →</span>
-            <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
+          <button className="px-10 py-4 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+            <span> <a href="/login">Start →</a></span>
+            {/* <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" /> */}
           </button>
         </motion.div>
       </ImagesSlider>
-      <div className="h-[40rem] w-full rounded-md bg-black relative flex flex-col items-center justify-center antialiased">
+      <div className="h-[30vh] w-full rounded-md bg-black relative flex flex-col items-center justify-center antialiased">
         <div className="max-w-2xl mx-auto p-4">
           <h2 className="relative z-10 text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
             Donate From Here.
@@ -48,8 +49,19 @@ export default function Homepage() {
         </div>
         <BackgroundBeams />
       </div>
-      <MeteorsDemo/>
-      <footer className="bg-black rounded-lg shadow dark:bg-black">
+      <div className=" bg-black flex flex-wrap justify-center space-x-2 ml-5 mr-5 gap-10">
+
+        {
+          cardsData &&
+          cardsData.map((value,index)=>{
+            return(
+              <MeteorsDemo key={index} {...value} />
+            )
+          })
+        }
+      </div>
+
+      <footer className=" w-[100vw]bg-black rounded-lg shadow dark:bg-black">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
             <a

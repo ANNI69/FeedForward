@@ -1,7 +1,10 @@
+import SideNavbar from "@/components/sideNavbar";
 export default function donorDashboard() {
   return (
     <div>
-      <h1>Donor Dashboard</h1>
+      <div>
+      <SideNavbar />
+      </div>
     </div>
   );
 }

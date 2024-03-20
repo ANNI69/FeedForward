@@ -12,12 +12,12 @@ const words = `At FeedForward, we're driven by the vision of a sustainable world
 export default function About() {
   return (
     <>
-      <div className="m-10 p-10 justify-center h-screen">
-        <div className="m-20">
+      <div className="m-10 p-10 justify-center ">
+        <div className="m-20 h-[80vh]">
           <TextGenerateEffect words={words} />
         </div>
 
-        <div className="mt-20">
+        <div className="mt-20 ">
           <Accordion type="single" collapsible className="w-full h-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>

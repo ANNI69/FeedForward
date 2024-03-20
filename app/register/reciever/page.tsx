@@ -20,7 +20,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 
-export default function acceptorRegister() {
+export default function AcceptorRegister() {
   const [formData, setFormData] = useState({
     name: "",
     type: "",

@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -22,7 +23,7 @@ import { ToastAction } from "@/components/ui/toast";
 import { toast, useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 
-export default function donorRegister() {
+export default function DonorRegister() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -56,7 +57,7 @@ export default function donorRegister() {
     });
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => {} }) => {
     e.preventDefault();
     console.log(formData);
     if (
@@ -76,17 +77,41 @@ export default function donorRegister() {
         action: <Button>Okay</Button>,
       });
     } else {
-      toast({
-        title: "Successfully Registered!",
-        description: "Dashboard",
-        action: (
-          <a href="/donor/dashboard">
-            <Button onClick={() => console.log("Redirect to Dash")}>
-              Go to Dashboard
-            </Button>
-          </a>
-        ),
+      const res = await fetch("/api/userExists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData.email),
       });
+
+      const { user } = await res.json();
+
+      if (user) {
+        toast({
+          variant: "destructive",
+          title: "User already exists",
+          description: "Please use different email for email.",
+        });
+        return;
+      }
+
+      const res2 = await axios("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: formData,
+      });
+
+      if (res.ok) {
+        toast({
+          variant: "default",
+          title: "Registered successfull",
+          description: "Login now!",
+          action: <Button>Login</Button>,
+        });
+      }
     }
   };
 

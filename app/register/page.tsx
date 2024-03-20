@@ -30,7 +30,8 @@ export default function Register() {
         <AlertDialogTrigger asChild>
           <Button>
             {" "}
-            <EnvelopeOpenIcon className="mr-2 h-4 w-4" /> Login{" "}
+            {/* <EnvelopeOpenIcon className="mr-2 h-4 w-4" />  */}
+            Register{" "}
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>

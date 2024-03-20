@@ -92,7 +92,7 @@ export default function donorRegister() {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen mt-10">
         <Card className="w-[950px]">
           <CardHeader>
             <CardTitle>Register</CardTitle>

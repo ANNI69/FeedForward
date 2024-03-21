@@ -76,7 +76,6 @@ export default function DonorDashboard() {
   return (
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
-        {}
         <PageTitle title={`${session?.user?.email}`} />
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
           {cardData.map(

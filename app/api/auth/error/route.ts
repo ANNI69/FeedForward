@@ -1,3 +1,5 @@
+import { NextResponse } from "next/server";
+
 export async function GET() {
-  return { status: 200, body: { message: "GET /api/auth/error" } };
+  return NextResponse.json({ message: "This is an error route" });
 }

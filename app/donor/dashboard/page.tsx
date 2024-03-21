@@ -1,6 +1,5 @@
 "use client";
 import PageTitle from "@/components/PageTitle";
-import SideNavbar from "@/components/SideNavbar";
 import Image from "next/image";
 import {
   DollarSign,
@@ -13,7 +12,7 @@ import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { Key } from "react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 
 const cardData: CardProps[] = [
@@ -78,7 +77,12 @@ export default function DonorDashboard() {
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
         <div className="flex justify-between items-center">
           <PageTitle title={`Welcome ${session?.user?.email}`} />
-          <Button className="bg-slate-900 text-white hover:bg-slate-100 hover:text-black  ">
+          <Button
+            className="bg-slate-900 text-white hover:bg-slate-100 hover:text-black  "
+            onClick={() =>
+              signOut({ callbackUrl: "http://localhost:3000/login" })
+            }
+          >
             Signout
           </Button>
         </div>

@@ -8,7 +8,6 @@ export type CardProps = {
   label: string;
   icon: LucideIcon;
   amount: string;
-  discription: string;
 };
 
 export default function Card(props: CardProps) {
@@ -22,7 +21,6 @@ export default function Card(props: CardProps) {
       </section>
       <section className="flex flex-col gap-1">
         <h2 className="text-2xl font-semibold">{props.amount}</h2>
-        <p className="text-xs text-gray-500">{props.discription}</p>
       </section>
     </CardContent>
   );

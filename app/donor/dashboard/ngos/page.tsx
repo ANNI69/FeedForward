@@ -14,15 +14,15 @@ import PageTitle from "@/components/PageTitle";
 
 type Props = {};
 type Payment = {
-  name: string;
+  ngoName: string;
   email: string;
-  lastOrder: string;
-  method: string;
+  distance: any;
+  listedDate: string;
 };
 
 const columns: ColumnDef<Payment>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "ngoName",
     header: "Name",
     cell: ({ row }) => {
       return (
@@ -30,11 +30,11 @@ const columns: ColumnDef<Payment>[] = [
           <img
             className="h-10 w-10"
             src={`https://api.dicebear.com/7.x/lorelei/svg?seed=${row.getValue(
-              "name"
+              "ngoName"
             )}`}
             alt="user-image"
           />
-          <p>{row.getValue("name")} </p>
+          <p>{row.getValue("ngoName")} </p>
         </div>
       );
     }
@@ -44,107 +44,111 @@ const columns: ColumnDef<Payment>[] = [
     header: "Email"
   },
   {
-    accessorKey: "lastOrder",
-    header: "Last Order"
+    accessorKey: "listedDate",
+    header: "Listed Date"
   },
   {
-    accessorKey: "method",
-    header: "Method"
+    accessorKey: "distance",
+    header: "distance"
   }
 ];
 
-const data: Payment[] = [
+const data: Payment[] = 
+[
   {
-    name: "John Doe",
+    ngoName: "Education for All",
     email: "john@example.com",
-    lastOrder: "2023-01-01",
-    method: "Credit Card"
+    distance: 10,
+    listedDate: "2022-05-15"
   },
   {
-    name: "Alice Smith",
+    ngoName: "Green Earth Foundation",
     email: "alice@example.com",
-    lastOrder: "2023-02-15",
-    method: "PayPal"
+    distance: 20,
+    listedDate: "2022-06-20"
   },
   {
-    name: "Bob Johnson",
+    ngoName: "Food for Needy",
     email: "bob@example.com",
-    lastOrder: "2023-03-20",
-    method: "Stripe"
+    distance: 30,
+    listedDate: "2022-07-25"
   },
   {
-    name: "Emma Brown",
+    ngoName: "Healthcare Initiative",
     email: "emma@example.com",
-    lastOrder: "2023-04-10",
-    method: "Venmo"
+    distance: 40,
+    listedDate: "2022-08-30"
   },
   {
-    name: "Michael Davis",
+    ngoName: "Animal Welfare Society",
     email: "michael@example.com",
-    lastOrder: "2023-05-05",
-    method: "Cash"
+    distance: 50,
+    listedDate: "2022-09-15"
   },
   {
-    name: "Sophia Wilson",
+    ngoName: "Children's Shelter",
     email: "sophia@example.com",
-    lastOrder: "2023-06-18",
-    method: "Bank Transfer"
+    distance: 45,
+    listedDate: "2022-10-10"
   },
   {
-    name: "Liam Garcia",
+    ngoName: "Clean Water Project",
     email: "liam@example.com",
-    lastOrder: "2023-07-22",
-    method: "Payoneer"
+    distance: 35,
+    listedDate: "2022-11-05"
   },
   {
-    name: "Olivia Martinez",
+    ngoName: "Elderly Care Foundation",
     email: "olivia@example.com",
-    lastOrder: "2023-08-30",
-    method: "Apple Pay"
+    distance: 15,
+    listedDate: "2022-12-10"
   },
   {
-    name: "Noah Rodriguez",
+    ngoName: "Disaster Relief Fund",
     email: "noah@example.com",
-    lastOrder: "2023-09-12",
-    method: "Google Pay"
+    distance: 5,
+    listedDate: "2023-01-15"
   },
   {
-    name: "Ava Lopez",
+    ngoName: "Empowerment Initiative",
     email: "ava@example.com",
-    lastOrder: "2023-10-25",
-    method: "Cryptocurrency"
+    distance: 25,
+    listedDate: "2023-02-20"
   },
   {
-    name: "Elijah Hernandez",
+    ngoName: "Housing Assistance Program",
     email: "elijah@example.com",
-    lastOrder: "2023-11-05",
-    method: "Alipay"
+    distance: 47,
+    listedDate: "2023-03-25"
   },
   {
-    name: "Mia Gonzalez",
+    ngoName: "Youth Development Center",
     email: "mia@example.com",
-    lastOrder: "2023-12-08",
-    method: "WeChat Pay"
+    distance: 38,
+    listedDate: "2023-04-30"
   },
   {
-    name: "James Perez",
+    ngoName: "Environmental Conservation Society",
     email: "james@example.com",
-    lastOrder: "2024-01-18",
-    method: "Square Cash"
+    distance: 13,
+    listedDate: "2023-05-15"
   },
   {
-    name: "Charlotte Carter",
+    ngoName: "Women's Empowerment Network",
     email: "charlotte@example.com",
-    lastOrder: "2024-02-22",
-    method: "Zelle"
+    distance: 42,
+    listedDate: "2023-06-20"
   },
   {
-    name: "Benjamin Taylor",
+    ngoName: "Community Development Foundation",
     email: "benjamin@example.com",
-    lastOrder: "2024-03-30",
-    method: "Stripe"
+    distance: 8,
+    listedDate: "2023-07-25"
   }
-];
+]
+
+
+;
 
 export default function UsersPage({}: Props) {
   return (

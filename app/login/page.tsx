@@ -122,7 +122,7 @@ export default function Login() {
           </CardFooter>
           <CardContent>
             <div className="flex pl-30">
-              {" "}Don't have an account? <a className="bg-blue hover-pointer"><Register /></a>
+              {" "}Dont have an account? <a className="bg-blue hover-pointer"><Register /></a>
             </div>
           </CardContent>
         </Card>

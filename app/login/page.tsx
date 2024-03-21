@@ -20,6 +20,8 @@ import {
 import { useState } from "react";
 import { ToastAction } from "@/components/ui/toast";
 import { toast, useToast } from "@/components/ui/use-toast";
+import Navbar from "@/components/navbar";
+import Register from "../register/page";
 
 export default function login() {
   const [formData, setFormData] = useState({
@@ -69,8 +71,9 @@ export default function login() {
   
   return (
       <>
-        <div className="flex justify-center items-center h-screen md:py-12">
-          <Card className="w-[350px]">
+        <Navbar/>
+        <div className="flex justify-center items-center h-auto md:py-12 ">
+          <Card className="w-[400px]">
             <CardHeader>
               <CardTitle>Login</CardTitle>
               <CardDescription>
@@ -82,24 +85,13 @@ export default function login() {
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="name">Username</Label>
-                    <Input id="name" placeholder="Name of your project" />
+                    <Input id="name" placeholder="Name of your username" />
                   </div>
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" placeholder="Password" />
+                    <Input id="password" placeholder="Password" type="password" />
                   </div>
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="type">Login Type</Label>
-                    <Select>
-                      <SelectTrigger id="framework">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent position="popper">
-                        <SelectItem value="donor">Donor</SelectItem>
-                        <SelectItem value="reciever">Reciever</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  
                 </div>
               </form>
             </CardContent>
@@ -107,8 +99,9 @@ export default function login() {
               <Button onClick={handlerReset} variant="outline">
                 Clear
               </Button>
-              <Button onClick={handleSubmit}>Submit</Button>
+              <Button className="bg-green-700 hover:bg-green-900" onClick={handleSubmit}>Submit</Button>
             </CardFooter>
+            <Register/>
           </Card>
         </div>
       </>

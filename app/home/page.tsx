@@ -6,7 +6,7 @@ import Image from "next/image";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import Navbar from "@/components/navbar";
 import MeteorsDemo from "./3rdSection";
-import {cardsData} from '@/utils/staticdata'
+import cardsData from "@/utils/staticData.js";
 export default function Homepage() {
   const images = [
     "https://info.ehl.edu/hubfs/Blog-EHL-Insights/Blog-Header-EHL-Insights/zero-food-waste.jpg",
@@ -15,7 +15,7 @@ export default function Homepage() {
   return (
     <>
       <Navbar />
-      <ImagesSlider className="h-[90vh]" images={images} >
+      <ImagesSlider className="h-[90vh]" images={images}>
         <motion.div
           initial={{
             opacity: 0,
@@ -30,13 +30,14 @@ export default function Homepage() {
           }}
           className="z-50 flex flex-col justify-center items-center"
         >
-          
           <motion.p className="font-bold text-xl md:text-8xl text-cente bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 font-[Nova]">
-
             <br /> Turning Leftovers into Opportunities
           </motion.p>
           <button className="px-10 py-4 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-            <span> <a href="/login">Start →</a></span>
+            <span>
+              {" "}
+              <a href="/login">Start →</a>
+            </span>
             {/* <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" /> */}
           </button>
         </motion.div>
@@ -50,15 +51,10 @@ export default function Homepage() {
         <BackgroundBeams />
       </div>
       <div className=" bg-black flex flex-wrap justify-center space-x-2 ml-5 mr-5 gap-10">
-
-        {
-          cardsData &&
-          cardsData.map((value,index)=>{
-            return(
-              <MeteorsDemo key={index} {...value} />
-            )
-          })
-        }
+        {cardsData &&
+          cardsData.map((value, index) => {
+            return <MeteorsDemo key={index} {...value} />;
+          })}
       </div>
 
       <footer className=" w-[100vw]bg-black rounded-lg shadow dark:bg-black">

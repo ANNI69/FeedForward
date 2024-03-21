@@ -1,82 +1,107 @@
+"use client";
 import PageTitle from "@/components/PageTitle";
 import SideNavbar from "@/components/SideNavbar";
 import Image from "next/image";
-import { DollarSign, Users, CreditCard, Activity, LucideIcon } from "lucide-react";
+import {
+  DollarSign,
+  Users,
+  CreditCard,
+  Activity,
+  LucideIcon,
+} from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { Key } from "react";
+import { useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 
 const cardData: CardProps[] = [
   {
     label: "Total Revenue",
     amount: "$45,231.89",
     discription: "+20.1% from last month",
-    icon: DollarSign
+    icon: DollarSign,
   },
   {
     label: "Subscriptions",
     amount: "+2350",
     discription: "+180.1% from last month",
-    icon: Users
+    icon: Users,
   },
   {
     label: "Sales",
     amount: "+12,234",
     discription: "+19% from last month",
-    icon: CreditCard
+    icon: CreditCard,
   },
   {
     label: "Active Now",
     amount: "+573",
     discription: "+201 since last hour",
-    icon: Activity
-  }
+    icon: Activity,
+  },
 ];
 
 const uesrSalesData: SalesProps[] = [
   {
     name: "Olivia Martin",
     email: "olivia.martin@email.com",
-    saleAmount: "+$1,999.00"
+    saleAmount: "+$1,999.00",
   },
   {
     name: "Jackson Lee",
     email: "isabella.nguyen@email.com",
-    saleAmount: "+$1,999.00"
+    saleAmount: "+$1,999.00",
   },
   {
     name: "Isabella Nguyen",
     email: "isabella.nguyen@email.com",
-    saleAmount: "+$39.00"
+    saleAmount: "+$39.00",
   },
   {
     name: "William Kim",
     email: "will@email.com",
-    saleAmount: "+$299.00"
+    saleAmount: "+$299.00",
   },
   {
     name: "Sofia Davis",
     email: "sofia.davis@email.com",
-    saleAmount: "+$39.00"
-  }
+    saleAmount: "+$39.00",
+  },
 ];
 
-export default function donorDashboard() {
+export default function DonorDashboard() {
+  const { data: session, status } = useSession();
   return (
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
-        <PageTitle title="Dashboard" />
+        <div className="flex justify-between items-center">
+          <PageTitle title={`Welcome ${session?.user?.email}`} />
+          <Button className="bg-slate-900 text-white hover:bg-slate-100 hover:text-black  ">
+            Signout
+          </Button>
+        </div>
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
-          {cardData.map((d: { amount: string; discription: string; icon: LucideIcon; label: string; }, i: Key | null | undefined) => (
-            <Card
-              key={i}
-              amount={d.amount}
-              discription={d.discription}
-              icon={d.icon}
-              label={d.label}
-            />
-          ))}
+          {cardData.map(
+            (
+              d: {
+                amount: string;
+                discription: string;
+                icon: LucideIcon;
+                label: string;
+              },
+              i: Key | null | undefined
+            ) => (
+              <Card
+                key={i}
+                amount={d.amount}
+                discription={d.discription}
+                icon={d.icon}
+                label={d.label}
+              />
+            )
+          )}
         </section>
         <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
           <CardContent>

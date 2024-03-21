@@ -57,7 +57,7 @@ export default function DonorRegister() {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => {} }) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(formData);
     if (
@@ -77,16 +77,14 @@ export default function DonorRegister() {
         action: <Button>Okay</Button>,
       });
     } else {
-      const res = await fetch("/api/userExists", {
-        method: "POST",
+      const a = await axios.post("/api/userExists", {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData.email),
+        data: { email: formData.email },
       });
 
-      const { user } = await res.json();
-
+      const user = a.data.user;
       if (user) {
         toast({
           variant: "destructive",
@@ -94,30 +92,38 @@ export default function DonorRegister() {
           description: "Please use different email for email.",
         });
         return;
-      }
-
-      const res2 = await axios("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: formData,
-      });
-
-      if (res.ok) {
-        toast({
-          variant: "default",
-          title: "Registered successfull",
-          description: "Login now!",
-          action: <Button>Login</Button>,
-        });
+      } else {
+        await axios("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: formData,
+        })
+          .then((response) => {
+            toast({
+              variant: "default",
+              title: "Registered successfull",
+              description: "Login now!",
+              action: <Button>Login</Button>,
+            });
+            console.log(response.data);
+          })
+          .catch((e) => {
+            toast({
+              variant: "destructive",
+              title: "Registered failed",
+              description: "Check the email!",
+            });
+            console.log("Error: ", e);
+          });
       }
     }
   };
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen mt-10">
+      <div className="flex justify-center items-center h-screen">
         <Card className="w-[950px]">
           <CardHeader>
             <CardTitle>Register</CardTitle>
@@ -154,8 +160,8 @@ export default function DonorRegister() {
                   </SelectTrigger>
                   <SelectContent position="popper">
                     <SelectItem value="caterers">Caterering </SelectItem>
-                    <SelectItem value="compost">Event Manager</SelectItem>
-                    <SelectItem value="biogas">Restaurant</SelectItem>
+                    <SelectItem value="eventmanager">Event Manager</SelectItem>
+                    <SelectItem value="restaurant">Restaurant</SelectItem>
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>

@@ -22,8 +22,6 @@
     "@tanstack/react-table": "^8.14.0",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
-    "axios": "^1.6.8",
-    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.5",
@@ -42,7 +40,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20",
+    "@types/node": "^20.11.30",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

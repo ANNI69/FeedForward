@@ -18,9 +18,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function AcceptorRegister() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -53,7 +56,7 @@ export default function AcceptorRegister() {
     });
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     if (
       formData.name === "" ||
       formData.type === "" ||
@@ -71,17 +74,49 @@ export default function AcceptorRegister() {
         action: <Button>Okay</Button>,
       });
     } else {
-      toast({
-        title: "Successfully Registered!",
-        description: "Dashboard",
-        action: (
-          <a href="/reciever/dashboard">
-            <Button onClick={() => console.log("Redirect to Dash")}>
-              Go to Dashboard
-            </Button>
-          </a>
-        ),
+      const a = await axios.post("/api/userExists", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { email: formData.email },
       });
+
+      const user = a.data.user;
+      if (user) {
+        toast({
+          variant: "destructive",
+          title: "User already exists",
+          description: "Please use different email for email.",
+        });
+        return;
+      } else {
+        await axios("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: formData,
+        })
+          .then((response) => {
+            toast({
+              variant: "default",
+              title: "Registered successfull",
+              description: "Login now!",
+              action: (
+                <Button onClick={() => router.push("/login")}>Login</Button>
+              ),
+            });
+            console.log(response.data);
+          })
+          .catch((e) => {
+            toast({
+              variant: "destructive",
+              title: "Registered failed",
+              description: "Check the email!",
+            });
+            console.log("Error: ", e);
+          });
+      }
     }
     e.preventDefault();
     console.log(formData);

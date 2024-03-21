@@ -19,10 +19,10 @@ import Navbar from "@/components/navbar";
 
 const cardData: CardProps[] = [
   {
-    label: "Total Revenue",
-    amount: "$45,231.89",
+    label: "Donation Count",
+    amount: "2",
     discription: "+20.1% from last month",
-    icon: DollarSign,
+    icon: Activity,
   },
   {
     label: "Subscriptions",

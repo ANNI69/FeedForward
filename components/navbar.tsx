@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 sticky top-0 z-40">
+    <nav className="border-gray-200 backdrop-blur dark:border-gray-700 sticky top-0 z-40">
       <div className="max-w-screen-xxl flex flex-wrap items-center justify-between  p-4 ">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img

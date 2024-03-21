@@ -67,24 +67,8 @@ export default function Login() {
         });
 
         if (!response?.error) {
-          await axios(`/api/userExists/${formData.email}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => {
-              const { user } = res.data;
-              if (user.position === "donor") {
-                router.push("/donor/dashboard");
-              } else {
-                router.push("/reciever/dashboard");
-              }
-              router.refresh();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          router.push("/reciever/dashboard");
+          router.refresh();
         }
       } catch (error) {}
     }

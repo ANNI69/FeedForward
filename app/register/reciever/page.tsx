@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -126,7 +127,9 @@ export default function AcceptorRegister() {
 
   return (
     <>
+    <Navbar/>
       <div className="flex justify-center items-center h-screen mt-10">
+      
         <Card className="w-[950px]">
           <CardHeader>
             <CardTitle>Register</CardTitle>

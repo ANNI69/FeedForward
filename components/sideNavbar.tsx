@@ -45,25 +45,25 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            href: "/dashboard/",
+            href: "/donor/dashboard/",
             icon: LayoutDashboard,
             variant: "default"
           },
           {
             title: "Users",
-            href: "/users",
+            href: "/donor/dashboard/users",
             icon: UsersRound,
             variant: "ghost"
           },
           {
             title: "Ordrs",
-            href: "/orders",
+            href: "/donor/dashboard/orders",
             icon: ShoppingCart,
             variant: "ghost"
           },
           {
             title: "Settings",
-            href: "/settings",
+            href: "/donor/dashboard/settings",
             icon: Settings,
             variant: "ghost"
           }

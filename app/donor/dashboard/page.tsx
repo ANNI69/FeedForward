@@ -76,7 +76,15 @@ export default function DonorDashboard() {
   return (
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
-        <PageTitle title={`${session?.user?.email}`} />
+        <div className="flex justify-between">
+          <PageTitle title={`${session?.user?.email}`} />
+          <Button
+            onClick={() => signOut()}
+            className="bg-slate-900 text-white hover:text-black border"
+          >
+            Sign Out
+          </Button>
+        </div>
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
           {cardData.map(
             (

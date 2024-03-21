@@ -78,13 +78,10 @@ export default function DonorDashboard() {
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
         <div className="flex justify-between">
-          {/* <PageTitle title="Dashboard" /> */}
-          <PageTitle title={`${session?.user?.name}`}/>
+          <PageTitle title={`${session?.user?.email}`} />
           <Button
-            onClick={() =>
-              signOut({ callbackUrl: "http://localhost:3000/login" })
-            }
-            variant="secondary"
+            onClick={() => signOut()}
+            className="bg-slate-900 text-white hover:text-black border"
           >
             Sign Out
           </Button>

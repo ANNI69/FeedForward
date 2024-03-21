@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 type Params = {
   email: string;
 };
-export async function GET(req: NextApiRequest, context: { params: Params }) {
+export async function GET(req: Request, context: { params: Params }) {
   try {
     const email = context.params.email;
     await connectDB();

@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import Register from "@/app/register/page";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,9 +70,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div >
-        <Button>Login</Button>
-        <Button variant={'ghost'}>Login</Button>
+        <div className="space-x-4 flex items-center">
+        <Link href={'/login'}><Button>Login</Button></Link>
+        <Register/>
         </div>
       </div>
     </nav>

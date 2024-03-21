@@ -27,8 +27,8 @@ export default function Register() {
   return (
     <>
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <h4>
+        <AlertDialogTrigger asChild className="cursor-pointer">
+          <h4 className="">
             {" "}
             {/* <EnvelopeOpenIcon className="mr-2 h-4 w-4" />  */}
             Register{" "}

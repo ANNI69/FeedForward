@@ -24,6 +24,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Register from "../register/page";
+import axios from "axios";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -66,8 +67,24 @@ export default function Login() {
         });
 
         if (!response?.error) {
-          router.push("/reciever/dashboard");
-          router.refresh();
+          await axios(`/api/userExists/${formData.email}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => {
+              const { user } = res.data;
+              if (user.position === "donor") {
+                router.push("/donor/dashboard");
+              } else {
+                router.push("/reciever/dashboard");
+              }
+              router.refresh();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       } catch (error) {}
     }
@@ -122,7 +139,11 @@ export default function Login() {
           </CardFooter>
           <CardContent>
             <div className="flex pl-30">
-              {" "}Dont have an account? <a className="bg-blue hover-pointer"><Register /></a>
+              {" "}
+              Dont have an account?{" "}
+              <a className="bg-blue hover-pointer">
+                <Register />
+              </a>
             </div>
           </CardContent>
         </Card>

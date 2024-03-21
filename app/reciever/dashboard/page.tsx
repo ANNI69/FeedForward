@@ -77,7 +77,8 @@ export default function RecieverDashboard() {
   return (
     <div>
       <div className="justify-between flex items-center p-4">
-        Welcome , {session?.user?.name}
+        
+        <PageTitle title={`${session?.user?.name}`}/>
         <Button
           variant="secondary"
           onClick={() =>

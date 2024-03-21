@@ -105,10 +105,10 @@ export default function DonorRegister() {
               variant: "default",
               title: "Registered successfull",
               description: "Login now!",
-              action: <Button>Login</Button>,
+              action: <Button><a href="/login">Login</a></Button>,
             });
             console.log(response.data);
-          })
+          })  
           .catch((e) => {
             toast({
               variant: "destructive",

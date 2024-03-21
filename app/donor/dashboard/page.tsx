@@ -15,6 +15,7 @@ import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { Key } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/navbar";
 
 const cardData: CardProps[] = [
   {
@@ -76,7 +77,18 @@ export default function DonorDashboard() {
   return (
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
-        <PageTitle title="Dashboard" />
+        <div className="flex justify-between">
+          {/* <PageTitle title="Dashboard" /> */}
+          <PageTitle title={`${session?.user?.name}`}/>
+          <Button
+            onClick={() =>
+              signOut({ callbackUrl: "http://localhost:3000/login" })
+            }
+            variant="secondary"
+          >
+            Sign Out
+          </Button>
+        </div>
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
           {cardData.map(
             (
@@ -106,7 +118,7 @@ export default function DonorDashboard() {
           </CardContent>
           <CardContent className="flex justify-between gap-4">
             <section>
-              <p>Recent Sales</p>
+              <p>Recent Orders</p>
               <p className="text-sm text-gray-400">
                 You made 265 sales this month.
               </p>

@@ -12,10 +12,13 @@ import {
   UsersRound,
   Settings,
   ChevronRight,
+  LogOut,
 } from "lucide-react";
 import { Button } from "./ui/button";
 
 import { useWindowWidth } from "@react-hook/window-size";
+import { Sign } from "crypto";
+import { signOut } from "next-auth/react";
 
 export default function SideNavbar({}: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -62,15 +65,9 @@ export default function SideNavbar({}: Props) {
             variant: "ghost",
           },
           {
-            title: "Settings",
-            href: "/donor/dashboard/settings",
-            icon: Settings,
-            variant: "ghost",
-          },
-          {
             title: "Signout",
-            href: "/settings",
-            icon: Settings,
+            href: "/login",
+            icon: LogOut,
             variant: "ghost",
           },
         ]}

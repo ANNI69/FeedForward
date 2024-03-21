@@ -8,6 +8,7 @@ import {
   Activity,
   LucideIcon,
 } from "lucide-react";
+
 import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
@@ -75,17 +76,7 @@ export default function DonorDashboard() {
   return (
     <div>
       <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
-        <div className="flex justify-between items-center">
-          <PageTitle title={`Welcome ${session?.user?.email}`} />
-          <Button
-            className="bg-slate-900 text-white hover:bg-slate-100 hover:text-black  "
-            onClick={() =>
-              signOut({ callbackUrl: "http://localhost:3000/login" })
-            }
-          >
-            Signout
-          </Button>
-        </div>
+        <PageTitle title="Dashboard" />
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
           {cardData.map(
             (

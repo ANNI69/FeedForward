@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/utils/cn";
-import SideNavbar from "@/components/SideNavbar";
+import SideNavbarReceiver from "@/components/SideNavbarReceiver";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
           }
         )}
       >
-        <SideNavbar />
+        <SideNavbarReceiver />
         <div className="p-8 w-full">{children}</div>
       </body>
     </html>

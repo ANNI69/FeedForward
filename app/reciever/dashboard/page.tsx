@@ -15,6 +15,7 @@ import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { Key } from "react";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
+
 const cardData: CardProps[] = [
   {
     label: "Total Revenue",
@@ -75,12 +76,66 @@ export default function RecieverDashboard() {
 
   return (
     <div>
-      Welcome , {session?.user?.email}
-      <Button
-        onClick={() => signOut({ callbackUrl: "http://localhost:3000/login" })}
-      >
-        Signout
-      </Button>
+      <div className="justify-between flex items-center p-4">
+        Welcome , {session?.user?.name}
+        <Button
+          variant="secondary"
+          onClick={() =>
+            signOut({ callbackUrl: "http://localhost:3000/login" })
+          }
+        >
+          Signout
+        </Button>
+      </div>
+      <div className="flex flex-col gap-5  w-full" suppressHydrationWarning>
+        <PageTitle title="Dashboard" />
+
+        <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
+          {cardData.map(
+            (
+              d: {
+                amount: string;
+                discription: string;
+                icon: LucideIcon;
+                label: string;
+              },
+              i: Key | null | undefined
+            ) => (
+              <Card
+                key={i}
+                amount={d.amount}
+                discription={d.discription}
+                icon={d.icon}
+                label={d.label}
+              />
+            )
+          )}
+        </section>
+        <section className="grid grid-cols-1  gap-4 transition-all lg:grid-cols-2">
+          <CardContent>
+            <p className="p-4 font-semibold">Overview</p>
+
+            <BarChart />
+          </CardContent>
+          <CardContent className="flex justify-between gap-4">
+            <section>
+              <p>Recent Sales</p>
+              <p className="text-sm text-gray-400">
+                You made 265 sales this month.
+              </p>
+            </section>
+            {uesrSalesData.map((d, i) => (
+              <SalesCard
+                key={i}
+                email={d.email}
+                name={d.name}
+                saleAmount={d.saleAmount}
+              />
+            ))}
+          </CardContent>
+          {/*  */}
+        </section>
+      </div>
     </div>
   );
 }

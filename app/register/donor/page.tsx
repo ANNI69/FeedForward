@@ -22,12 +22,15 @@ import { ToastAction } from "@/components/ui/toast";
 
 import { toast, useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import Navbar from "@/components/navbar";
+import { useRouter } from "next/navigation";
 
 export default function DonorRegister() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     type: "",
+    position: "donor",
     registerNumber: "",
     address: "",
     estDate: "",
@@ -48,6 +51,7 @@ export default function DonorRegister() {
     setFormData({
       name: "",
       type: "",
+      position: "",
       registerNumber: "",
       address: "",
       estDate: "",
@@ -57,6 +61,7 @@ export default function DonorRegister() {
     });
   };
 
+  const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(formData);
@@ -105,7 +110,9 @@ export default function DonorRegister() {
               variant: "default",
               title: "Registered successfull",
               description: "Login now!",
-              action: <Button><a href="/login">Login</a></Button>,
+              action: (
+                <Button onClick={() => router.push("/login")}>Login</Button>
+              ),
             });
             console.log(response.data);
           })  
@@ -123,6 +130,7 @@ export default function DonorRegister() {
 
   return (
     <>
+      <Navbar />
       <div className="flex justify-center items-center h-screen">
         <Card className="w-[950px]">
           <CardHeader>

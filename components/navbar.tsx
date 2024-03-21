@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,6 +67,10 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
+        </div>
+        <div >
+        <Button>Login</Button>
+        <Button variant={'ghost'}>Login</Button>
         </div>
       </div>
     </nav>

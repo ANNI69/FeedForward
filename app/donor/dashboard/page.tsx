@@ -80,7 +80,7 @@ export default function DonorDashboard() {
         <div className="flex justify-between">
           <PageTitle title={`${session?.user?.email}`} />
           <Button
-            onClick={() => signOut()}
+            onClick={() => signOut({callbackUrl:"/login"})}
             className="bg-slate-900 text-white hover:text-black border"
           >
             Sign Out

@@ -114,10 +114,10 @@ export default function Login() {
               Clear
             </Button>
             <Button
-              className="bg-green-700 hover:bg-green-900"
+              className="bg-green-700 hover:bg-green-900 text-white"
               onClick={handleSubmit}
             >
-              Submit
+              Login
             </Button>
           </CardFooter>
           <Register />

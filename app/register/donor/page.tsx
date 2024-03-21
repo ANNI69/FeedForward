@@ -115,7 +115,7 @@ export default function DonorRegister() {
               ),
             });
             console.log(response.data);
-          })  
+          })
           .catch((e) => {
             toast({
               variant: "destructive",

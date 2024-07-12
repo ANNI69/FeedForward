@@ -3,6 +3,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../Models/Food.model.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 

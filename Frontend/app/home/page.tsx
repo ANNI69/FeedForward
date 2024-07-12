@@ -7,6 +7,7 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import Navbar from "@/components/navbar";
 import MeteorsDemo from "./3rdSection";
 import cardsData from "@/utils/staticData";
+
 export default function Homepage() {
   const images = [
     "https://info.ehl.edu/hubfs/Blog-EHL-Insights/Blog-Header-EHL-Insights/zero-food-waste.jpg",

@@ -10,91 +10,63 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useState } from "react";
-import { ToastAction } from "@/components/ui/toast";
-import { toast, useToast } from "@/components/ui/use-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/navbar";
-import Register from "../register/page";
 import axios from "axios";
+import Link from "next/link";
+import Toast from "@/utils/Toast";
 
 export default function Login() {
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
-    const { name, value } = e.target;
-
-    setFormData((prevState: any) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const handlerReset = () => {
-    setFormData({
+    setData({
       email: "",
       password: "",
     });
   };
 
   const router = useRouter();
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    handleChange;
-    if (formData.email === "" || formData.password === "") {
-      toast({
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
-      });
-      console.log(formData);
-    } else {
-      try {
-        const response = await signIn("credentials", {
-          email: formData.email,
-          password: formData.password,
-          redirect: false,
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("/api/auth/login", data);
+      if (response.status === 200) {
+        Toast({
+          title: "Login successful",
+          description: "You have successfully logged in",
+          actionText: "Okay",
+          actionAltText: "Cancel",
         });
-
-        if (!response?.error) {
-          await axios(`/api/userExists/${formData.email}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => {
-              const { user } = res.data;
-              if (user.position === "donor") {
-                router.push("/donor/dashboard");
-              } else {
-                router.push("/reciever/dashboard");
-              }
-              router.refresh();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      } catch (error) {}
+        await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          callbackUrl: "/",
+        });
+      }
+    } catch (error) {
+      Toast({
+        title: "Login failed",
+        description: "Please check your credentials",
+        actionText: "Okay",
+        actionAltText: "Cancel",
+      });
     }
-    e.preventDefault();
   };
-
+  
   return (
     <>
       <Navbar />
-      <div className="flex justify-center items-center h-auto md:py-12 ">
+      <div className="flex justify-center items-center h- md:py-12 ">
         <Card className="w-[400px]">
           <CardHeader>
             <CardTitle>Login</CardTitle>
@@ -131,7 +103,7 @@ export default function Login() {
               Clear
             </Button>
             <Button
-              className="bg-green-700 hover:bg-green-900 text-white"
+              variant={"default"}
               onClick={handleSubmit}
             >
               Login
@@ -139,11 +111,10 @@ export default function Login() {
           </CardFooter>
           <CardContent>
             <div className="flex pl-30">
-              {" "}
-              Dont have an account?{" "}
-              <a className="bg-blue hover-pointer">
-                <Register />
-              </a>
+              Dont have an account?
+              <Link href="/register">
+                <span className="bg-blue hover-pointer"> Register</span>
+              </Link>
             </div>
           </CardContent>
         </Card>

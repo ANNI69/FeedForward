@@ -1,6 +1,6 @@
 "use client";
 
-import { GlobeDemo } from "./home/page";
+import { GlobeDemo } from "./GlobeDemo";
 import { MeteorsDemo } from "../components/Cards";
 
 export default function Home() {

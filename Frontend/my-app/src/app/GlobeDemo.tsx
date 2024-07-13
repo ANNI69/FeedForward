@@ -397,6 +397,7 @@ export function GlobeDemo() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
+
   return (
     <>
       <div>

@@ -86,7 +86,7 @@ export default function Login() {
                 Login
               </Button>
               <p className=" text-sm text-end text-white font-sans">
-                Don't have an account?{" "}
+                Dont have an account?{" "}
                 <span className=" text-sm hover:underline font-sans">
                   {" "}
                   <a href="/register">Register</a>

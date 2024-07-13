@@ -1,3 +1,5 @@
+"use client";
+
 import { GlobeDemo } from "./home/page";
 import { MeteorsDemo } from "../components/Cards";
 

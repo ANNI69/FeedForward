@@ -11,7 +11,7 @@ const World = dynamic(
   }
 );
 
-export function GlobeDemo() {
+function GlobeDemo() {
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -397,7 +397,6 @@ export function GlobeDemo() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
-
   return (
     <>
       <div>
@@ -436,4 +435,4 @@ export function GlobeDemo() {
   );
 }
 
-export default GlobeDemo;
+

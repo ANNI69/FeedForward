@@ -1,0 +1,31 @@
+Donor - Dashbaord 
+- Total Donations
+- Completed Donations
+- Total Donations
+
+Donor - Users
+- List of Acceptors
+- Acceptor Details
+
+Donor - Orders
+- List of Orders
+- Order Details
+- Order Status
+- Order History
+
+#################################################################################
+
+Acceptor - Dashboard
+- Total Donations Accepted
+- Completed Donations
+- Total Donations
+
+Acceptor - Users
+- List of Donors
+- Donor Details
+
+Acceptor - Orders
+- List of Orders
+- Order Details
+- Order Status
+- Order History

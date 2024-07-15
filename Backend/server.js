@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import connectToDB from "./src/DB/index.js";
 import authRoutes from "./src/Routes/Auth.route.js"; // Assuming your routes are in the src folder
 import foodRoutes from "./src/Routes/Food.routes.js"; // Assuming your routes are in the src folder
+import userRoutes from "./src/Routes/User.route.js"; // Assuming your routes are in the src folder
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ app.use(cookieParser());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/food", foodRoutes);
+app.use("/api/user", userRoutes);
+
 
 // Database connection and server start
 connectToDB()

@@ -1,33 +1,26 @@
-// routes/food.js
-import express from "express";
-import Food from "../Models/Food.model.js";
-import auth from "../Middlewares/auth.js";
+import express from 'express';
+import FoodItem from '../Models/Food.model.js';
 
 const router = express.Router();
 
-// Donate Food
-router.post("/donate", auth, async (req, res) => {
+// Create a new food item
+router.post('/fooditems', async (req, res) => {
   try {
-    const {
-      foodType,
-      foodQuantity,
-      foodContaining,
-      expectedFoodExpiry,
-      additionalDetails,
-    } = req.body;
-    const newFood = new Food({
-      donor: req.user.id,
-      foodType,
-      foodQuantity,
-      foodContaining,
-      expectedFoodExpiry,
-      additionalDetails,
-    });
+    const foodItem = new FoodItem(req.body);
+    await foodItem.save();
+    res.status(201).send(foodItem);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
-    const savedFood = await newFood.save();
-    res.status(201).json(savedFood);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+// Get all food items
+router.get('/fooditems', async (req, res) => {
+  try {
+    const foodItems = await FoodItem.find();
+    res.status(200).send(foodItems);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

@@ -1,11 +1,13 @@
 /** @format */
 
 import PageTitle from "@/components/PageTitle";
-import Image from "next/image";
 import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import Modal from "@/components/Modal";
 
 const cardData: CardProps[] = [
   {
@@ -63,10 +65,31 @@ const uesrSalesData: SalesProps[] = [
 ];
 
 export default function Dashboard() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5  w-full">
-        <PageTitle title="Dashboard" />
+        <div className="flex justify-between items-center">
+          <PageTitle title="Dashboard" />
+          <Button
+            onClick={() => {
+              handleOpenModal();
+            }}
+            variant="ghost"
+          >
+            Add Food +{" "}
+          </Button>
+          <Modal show={showModal} onClose={handleCloseModal} />
+        </div>
         <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
           {cardData.map((d, i) => (
             <Card

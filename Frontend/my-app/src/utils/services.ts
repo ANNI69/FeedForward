@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { userLoginUrl, userRegisterUrl } from '@/Constants';
+import { getUser, userLoginUrl, userRegisterUrl } from '@/Constants';
 
 // const res = axios.get(BASE_URL + '/user')
 
@@ -12,4 +12,14 @@ export async function userRegister(data: any) {
   const res = axios.post(userRegisterUrl, data);
   return res;
 };
+
+export async function userLogout() {
+  const res = axios.post(userRegisterUrl);
+  return res;
+};
+
+export async function getProfile(userId: string) {
+  const res = axios.get(getUser + '/' + userId);
+  return res;
+}
 

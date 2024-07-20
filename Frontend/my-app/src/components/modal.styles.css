@@ -1,0 +1,7 @@
+/* components/Modal.module.css */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

@@ -11,11 +11,15 @@ import {
   LayoutDashboard,
   UsersRound,
   Settings,
-  ChevronRight
+  ChevronRight,
+  BotMessageSquare,
+  MessageCircleCode,
+  MessageCircle
 } from "lucide-react";
 import { Button } from "./ui/button";
 
 import { useWindowWidth } from "@react-hook/window-size";
+import { ChatBubbleIcon } from "@radix-ui/react-icons";
 
 export default function SideNavbar({}: Props) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -59,6 +63,12 @@ export default function SideNavbar({}: Props) {
             title: "Ordrs",
             href: "/dashboard/orders",
             icon: ShoppingCart,
+            variant: "ghost"
+          },
+          {
+            title: "Chats",
+            href: "/dashboard/chats",
+            icon: MessageCircle,
             variant: "ghost"
           },
           {

@@ -2,6 +2,9 @@ import SideNavbar from "@/components/SideNavbar";
 import { cn } from "@/lib/utils";
 import React from "react";
 import Dashboard from "../Dashboard";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 export default function ChatsPage() {
   return (
@@ -17,50 +20,62 @@ export default function ChatsPage() {
 }
 
 function Chat() {
-    return (
-        <>
-        <div className="flex flex-col w-full h-full ">
-            <div className="flex justify-between items-center p-4 border-b">
-                <div className="flex items-center gap-2">
-                    <img
-                        className="h-10 w-10"
-                        src="https://api.dicebear.com/7.x/lorelei/svg?seed=John Doe"
-                        alt="user-image"
-                    />
-                    <p>John Doe</p>
-                </div>
-                <div className="flex gap-2">
-                    <button className="p-2 rounded-lg bg-red-500 text-white">Delete</button>
-                    <button className="p-2 rounded-lg bg-blue-500 text-white">Edit</button>
-                </div>
+  return (
+    <>
+      <div className="flex flex-col h-full">
+        <header className="flex items-center justify-between px-4 py-2 border-b">
+          <h1 className="text-lg font-semibold">Chat Room</h1>
+          <Button className="text-white" variant="outline" size="sm">
+            Leave Chat
+          </Button>
+        </header>
+        <main className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex items-end space-x-2">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="text-white">U</AvatarFallback>
+            </Avatar>
+            <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
+              <p className=" text-white text-sm">Hello everyone!</p>
             </div>
-            <div className="flex flex-col gap-2 p-4">
-                <div className="flex gap-2">
-                    <p className="font-semibold">Email:</p>
-                    <p>
-                        <a href="mailto:codebyaniii@gmail.com">
-                        Hie
-                        </a>
-                    </p>
-                </div>
-                <div className="flex gap-2">
-                    <p className="font-semibold">Phone:</p>
-                    <p>+91 1234567890</p>
-                </div>
-                <div className="flex gap-2">
-                    <p className="font-semibold">Message:</p>
-                    <p>Hi, How are you?</p>
-                </div>
+          </div>
+          <div className="flex items-end space-x-2">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="text-white">U</AvatarFallback>
+            </Avatar>
+            <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
+              <p className=" text-white text-sm">How's it going?</p>
             </div>
-            <div className="flex space-x-2 items-center justify-between p-4 border-t">
-                <input
-                    type="text"
-                    placeholder="Type a message..."
-                    className="flex-1 p-2 rounded-lg border"
-                />
-                <button className="p-2 rounded-lg bg-blue-500 text-white">Send</button>
+          </div>
+          <div className="flex items-end justify-end space-x-2">
+            <div className="p-2 rounded-lg bg-blue-500 text-white">
+              <p className="text-sm">
+                Hello! It's going well, thanks for asking.
+              </p>
             </div>
-        </div>
-        </>
-    );
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="text-white">U</AvatarFallback>
+            </Avatar>
+          </div>
+          <div className="flex items-end justify-end space-x-2">
+            <div className="p-2 rounded-lg bg-blue-500 text-white">
+              <p className=" text-white text-sm">What about you?</p>
+            </div>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback className="text-white">U</AvatarFallback>
+            </Avatar>
+          </div>
+        </main>
+        <footer className="flex items-center space-x-2 p-2 border-t">
+          <Input className="flex-1" placeholder="Type a message" />
+          <Button className="text-white" variant="outline" size="sm">
+            Send
+          </Button>
+        </footer>
+      </div>
+    </>
+  );
 }

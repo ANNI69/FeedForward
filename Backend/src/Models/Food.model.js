@@ -47,7 +47,7 @@ const FoodItemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+},{timestamps: true});
 
 const FoodItem = mongoose.model('FoodItem', FoodItemSchema);
 

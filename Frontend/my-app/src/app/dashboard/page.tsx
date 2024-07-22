@@ -5,7 +5,7 @@ import Dashboard from "./Dashboard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 interface User {
   id: string;
   token: string;
@@ -15,7 +15,7 @@ interface Data {
   token?: string;
   email?: string;
 }
-const cookieStore = cookies();
+// const cookieStore = cookies();
 
 export default function Home() {
   const [data, setData] = useState<Data>({});
@@ -23,33 +23,33 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch the user cookie
-    const userCookie = cookieStore.get('user')?.value;
+    // const userCookie = cookieStore.get('user')?.value;
     
-    if (!userCookie) {
-      // Handle case where user cookie is not found
-      console.error('User cookie not found');
-      router.push('/login'); // Redirect to login if user not authenticated
-      return;
-    }
+    // if (!userCookie) {
+    //   // Handle case where user cookie is not found
+    //   console.error('User cookie not found');
+    //   router.push('/login'); // Redirect to login if user not authenticated
+    //   return;
+    // }
     
-    // Parse the user cookie
-    const user: User = JSON.parse(userCookie);
+    // // Parse the user cookie
+    // const user: User = JSON.parse(userCookie);
 
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/api/dashboard/${user.id}`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
-        setData(res.data);
-      } catch (error) {
-        console.error('Error fetching dashboard data:', error);
-        // Optionally handle errors such as redirecting to an error page
-      }
-    }
+    // const fetchData = async () => {
+    //   try {
+    //     const res = await axios.get(`/api/dashboard/${user.id}`, {
+    //       headers: {
+    //         Authorization: `Bearer ${user.token}`,
+    //       },
+    //     });
+    //     setData(res.data);
+    //   } catch (error) {
+    //     console.error('Error fetching dashboard data:', error);
+    //     // Optionally handle errors such as redirecting to an error page
+    //   }
+    // }
 
-    fetchData();
+    // fetchData();
   }, []);
 
   return (

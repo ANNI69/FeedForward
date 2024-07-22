@@ -1,5 +1,4 @@
 /** @format */
-
 import PageTitle from "@/components/PageTitle";
 import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";

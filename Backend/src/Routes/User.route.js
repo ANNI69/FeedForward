@@ -36,11 +36,11 @@ router.get("/dashboard", auth, async (req, res) => {
   try {
     const userId = req.user.id;
     const userType = req.user.type;
-
+    console.log(userId, userType);
     let userDashboardData;
 
-    if (userType === "Donor") {
-      const donor = await Donor.findById(userId).select("-password");
+    if (userType === "donor") {
+      const donor = await donor.findById(userId).select("-password");
       if (!donor) {
         return res.status(404).json({ msg: "Donor not found" });
       }
@@ -51,7 +51,7 @@ router.get("/dashboard", auth, async (req, res) => {
         // Add other relevant donor dashboard data
       };
     } else if (userType === "Acceptor") {
-      const acceptor = await Acceptor.findById(userId).select("-password");
+      const acceptor = await acceptor.findById(userId).select("-password");
       if (!acceptor) {
         return res.status(404).json({ msg: "Acceptor not found" });
       }

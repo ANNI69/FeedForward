@@ -1,40 +1,41 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const DonationSchema = new mongoose.Schema({
-  donor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Donor',
-    required: true,
+const DonationSchema = new mongoose.Schema(
+  {
+    donor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Donor",
+      required: true,
+    },
+    acceptor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Acceptor",
+      required: true,
+    },
+    foodItems: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "FoodItem",
+        required: true,
+      },
+    ],
+    pickupDate: {
+      type: Date,
+      required: true,
+    },
+    deliveryDate: {
+      type: Date,
+      required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "completed", "canceled"],
+      default: "pending",
+    },
   },
-  acceptor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Acceptor',
-    required: true,
-  },
-  foodItems: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'FoodItem',
-    required: true,
-  }],
-  pickupDate: {
-    type: Date,
-    required: true,
-  },
-  deliveryDate: {
-    type: Date,
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ['pending', 'completed', 'canceled'],
-    default: 'pending',
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
-const Donation = mongoose.model('Donation', DonationSchema);
+const Donation = mongoose.model("Donation", DonationSchema);
 
 export default Donation;

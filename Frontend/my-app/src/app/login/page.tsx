@@ -1,3 +1,4 @@
+// import { cookies } from "next/headers";
 "use client";
 import {
   Card,
@@ -12,12 +13,14 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import { ToastAction } from "@/components/ui/toast";
 import { toast, useToast } from "@/components/ui/use-toast";
-
 import { userLogin } from "@/utils/services";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  // const cookieStore = cookies();
   const [data, setData] = useState({});
+  const router = useRouter();
 
   const handleChange = (e: any) => {
     const { id, value } = e.target;
@@ -32,14 +35,16 @@ export default function Login() {
     try {
       const res = await userLogin(data);
       if (res.status === 200) {
-        console.log("Login successful");
+        const userData = res.data; // Assuming the user data is in res.data
+        // cookieStore.set("user", userData);
+        console.log("Login successful", res);
         toast({
           title: "Login successful",
           description: "You have successfully logged in",
           action: <ToastAction altText={"Okay"}>Okay</ToastAction>,
         });
+        router.push("/dashboard");
       }
-      console.log(res.status);
     } catch (error) {
       console.log(error);
       toast({

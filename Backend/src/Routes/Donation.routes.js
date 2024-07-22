@@ -4,7 +4,7 @@ import Donation from '../Models/Donaton.model.js';
 const router = express.Router();
 
 // Create a new donation
-router.post('/donations', async (req, res) => {
+router.post('/donation', async (req, res) => {
   try {
     const donation = new Donation(req.body);
     await donation.save();

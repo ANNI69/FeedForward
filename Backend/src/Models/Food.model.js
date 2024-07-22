@@ -42,11 +42,7 @@ const FoodItemSchema = new mongoose.Schema({
     type: String,
     enum: ['available', 'donated', 'expired', 'disposed'],
     default: 'available',
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  }
 },{timestamps: true});
 
 const FoodItem = mongoose.model('FoodItem', FoodItemSchema);

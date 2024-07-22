@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import Dashboard from "./Dashboard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { cookies } from "next/headers";
+import { userCookie } from "@/lib/cookies";
 interface User {
   id: string;
   token: string;
@@ -15,7 +16,6 @@ interface Data {
   token?: string;
   email?: string;
 }
-const cookieStore = cookies();
 
 export default function Home() {
   const [data, setData] = useState<Data>({});
@@ -23,15 +23,14 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch the user cookie
-    const userCookie = cookieStore.get('user')?.value;
     
-    if (!userCookie) {
+    if (JSON.stringify(userCookie)==undefined) {
       // Handle case where user cookie is not found
       console.error('User cookie not found');
       router.push('/login'); // Redirect to login if user not authenticated
       return;
     }
-    
+    console.log(JSON.stringify(userCookie))
     // Parse the user cookie
     const user: User = JSON.parse(userCookie);
 

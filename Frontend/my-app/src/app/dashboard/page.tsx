@@ -19,7 +19,7 @@ interface Data {
 
 export default function Home() {
   const [data, setData] = useState<Data>({});
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     // Fetch the user cookie

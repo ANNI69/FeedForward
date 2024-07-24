@@ -32,43 +32,13 @@ router.get("/getUser/:id", async (req, res) => {
   }
 });
 
-router.get("/dashboard", auth, async (req, res) => {
+router.get("/dashboard/:userId", auth, async (req, res) => {
   try {
-    const userId = req.user.id;
-    const userType = req.user.type;
-    console.log(userId, userType);
-    let userDashboardData;
-
-    if (userType === "donor") {
-      const donor = await donor.findById(userId).select("-password");
-      if (!donor) {
-        return res.status(404).json({ msg: "Donor not found" });
-      }
-      userDashboardData = {
-        name: donor.name,
-        organizationName: donor.organizationName,
-        donations: [], // Replace with actual donation data
-        // Add other relevant donor dashboard data
-      };
-    } else if (userType === "Acceptor") {
-      const acceptor = await acceptor.findById(userId).select("-password");
-      if (!acceptor) {
-        return res.status(404).json({ msg: "Acceptor not found" });
-      }
-      userDashboardData = {
-        name: acceptor.name,
-        organizationName: acceptor.organizationName,
-        acceptedDonations: [], // Replace with actual accepted donations data
-        // Add other relevant acceptor dashboard data
-      };
-    } else {
-      return res.status(400).json({ msg: "Invalid user type" });
-    }
-
-    res.json(userDashboardData);
+    const user = await User.findById(req.params.userId);
+    res.status(200).json(user);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
+    console.error(err);
+    res.status(400).json({ message: err.message });
   }
 });
 

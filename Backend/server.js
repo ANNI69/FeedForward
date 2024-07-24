@@ -9,8 +9,8 @@ import foodRoutes from "./src/Routes/Food.routes.js"; // Assuming your routes ar
 import userRoutes from "./src/Routes/User.route.js"; // Assuming your routes are in the src folder
 import inventoryRoutes from "./src/Routes/Inventory.routes.js"; // Assuming your routes are in the src folder
 import donationRoutes from "./src/Routes/Donation.routes.js"; // Assuming your routes are in the src folder
-dotenv.config();
 
+dotenv.config();
 const app = express();
 
 // Middleware

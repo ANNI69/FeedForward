@@ -11,8 +11,8 @@ import { Input } from "./ui/input";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
 import axios from "axios";
-import { getFoodUrl } from "@/Constants";
-
+import { getFoodUrl } from "@/Constants"; // Ensure this URL points to "http://localhost:5000/api/fooditems"
+import { sendFoodData } from "@/utils/services";
 type ModalProps = {
   show: boolean;
   onClose: () => void;
@@ -25,12 +25,12 @@ const Modal = ({ show, onClose }: ModalProps) => {
     name: "",
     quantity: "",
     unit: "",
-    isEdible: true,
+    isEdible: false,
     expirationDate: "",
     category: "",
     storageCondition: "",
     source: "",
-    donatedBy: "", // Ensure this field is correctly named
+    donatedBy: "anii", // Add this line to include the donatedby field in the form
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,19 +38,21 @@ const Modal = ({ show, onClose }: ModalProps) => {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, checked } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: checked }));
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios
-      .post(getFoodUrl, formData)
+    console.log(formData); // Log form data to check its structure
+    sendFoodData(formData, "token", "userId") // Replace "token" and "userId" with actual values
       .then((res) => {
         console.log(res.data);
         onClose();
       })
       .catch((err) => {
-        console.error(
-          "Error submitting form: ",
-          err.response ? err.response.data : err.message
-        );
+        console.error(err);
       });
   };
 
@@ -104,12 +106,12 @@ const Modal = ({ show, onClose }: ModalProps) => {
                         <Switch
                           id="isEdible"
                           checked={formData.isEdible}
-                          onChange={() =>
+                          onChange={() => {
                             setFormData((prevData) => ({
                               ...prevData,
                               isEdible: !prevData.isEdible,
-                            }))
-                          }
+                            }));
+                          }}
                         />
                         <span>No</span>
                       </div>

@@ -3,9 +3,12 @@ import SideNavbar from "@/components/SideNavbar";
 import { cn } from "@/lib/utils";
 import Dashboard from "./Dashboard";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-// import { cookies } from "next/headers";
+import { useRouter } from "next/navigation";
+import { setCookie, getCookie } from "cookies-next";
+import { getDashboardData } from "@/utils/services";
+import ProtectedRoute from "@/utils/ProtectedRoute";
+import { AuthProvider } from "@/context/AuthContext";
+
 interface User {
   id: string;
   token: string;
@@ -15,52 +18,46 @@ interface Data {
   token?: string;
   email?: string;
 }
-// const cookieStore = cookies();
 
 export default function Home() {
   const [data, setData] = useState<Data>({});
-  // const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    // Fetch the user cookie
-    // const userCookie = cookieStore.get('user')?.value;
-    
-    // if (!userCookie) {
-    //   // Handle case where user cookie is not found
-    //   console.error('User cookie not found');
-    //   router.push('/login'); // Redirect to login if user not authenticated
-    //   return;
-    // }
-    
-    // // Parse the user cookie
-    // const user: User = JSON.parse(userCookie);
+    // Get user cookie
+    const userCookie = getCookie("user");
+    if (userCookie) {
+      const user: User = JSON.parse(userCookie);
+      setData(user);
+      console.log("User cookie found", user);
+    } else {
+      router.push("/login"); // Redirect to login if no user cookie is found
+      console.log("No user cookie found");
+    }
 
-    // const fetchData = async () => {
-    //   try {
-    //     const res = await axios.get(`/api/dashboard/${user.id}`, {
-    //       headers: {
-    //         Authorization: `Bearer ${user.token}`,
-    //       },
-    //     });
-    //     setData(res.data);
-    //   } catch (error) {
-    //     console.error('Error fetching dashboard data:', error);
-    //     // Optionally handle errors such as redirecting to an error page
-    //   }
-    // }
+    const fetchData = async () => {
+      if (data.id && data.token) {
+        getDashboardData(data.id, data.token).then((res) => {
+          console.log("Dashboard data", res.data);
+        });
+      }
+    };
 
-    // fetchData();
-  }, []);
+    fetchData();
+  }, [data.id, data.token]);
 
   return (
-    <>
-      <div className={cn("min-h-screen w-full bg-white text-black flex ")}>
-        <SideNavbar />
-        {/* {data.name} */}
-        <div className="p-8 w-full">
-          <Dashboard  />
+    <AuthProvider>
+      <ProtectedRoute>
+        {" "}
+        {/* Wrap content in ProtectedRoute */}
+        <div className={cn("min-h-screen w-full bg-white text-black flex ")}>
+          <SideNavbar />
+          <div className="p-8 w-full">
+            <Dashboard />
+          </div>
         </div>
-      </div>
-    </>
+      </ProtectedRoute>
+    </AuthProvider>
   );
 }

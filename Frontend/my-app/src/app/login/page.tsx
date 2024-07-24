@@ -1,4 +1,4 @@
-// import { cookies } from "next/headers";
+// Import necessary components and hooks
 "use client";
 import {
   Card,
@@ -13,31 +13,32 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import { ToastAction } from "@/components/ui/toast";
 import { toast, useToast } from "@/components/ui/use-toast";
-import { userLogin } from "@/utils/services";
+import { userLogin } from "@/utils/services"; // Ensure this is correctly implemented
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { setCookie } from "cookies-next";
 
 export default function Login() {
-  // const cookieStore = cookies();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<{ email?: string; password?: string }>({});
   const router = useRouter();
 
+  // Handle input changes
   const handleChange = (e: any) => {
     const { id, value } = e.target;
-    setData((prevData: any) => ({
+    setData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const res = await userLogin(data);
+      const res = await userLogin(data); // Ensure userLogin returns the expected response
       if (res.status === 200) {
         const userData = res.data; // Assuming the user data is in res.data
-        // cookieStore.set("user", userData);
-        console.log("Login successful", res);
+        setCookie("user", JSON.stringify(userData));
         toast({
           title: "Login successful",
           description: "You have successfully logged in",
@@ -59,7 +60,7 @@ export default function Login() {
     <>
       <Navbar />
       <div className="flex items-center justify-center h-screen bg-black overflow-hidden">
-        <Card className="bg-black mx-auto max-w-sm ">
+        <Card className="bg-black mx-auto max-w-sm">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Login</CardTitle>
             <CardDescription>
@@ -67,7 +68,7 @@ export default function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -83,21 +84,20 @@ export default function Login() {
                 <Input
                   id="password"
                   type="password"
-                  onChange={handleChange}
                   required
+                  onChange={handleChange}
                 />
               </div>
-              <Button onClick={handleSubmit} className="w-full">
+              <Button type="submit" className="w-full">
                 Login
               </Button>
-              <p className=" text-sm text-end text-white font-sans">
-                Dont have an account?{" "}
-                <span className=" text-sm hover:underline font-sans">
-                  {" "}
+              <p className="text-sm text-end text-white font-sans">
+                Don't have an account?{" "}
+                <span className="text-sm hover:underline font-sans">
                   <a href="/register">Register</a>
                 </span>
               </p>
-            </div>
+            </form>
           </CardContent>
         </Card>
       </div>
